@@ -88,7 +88,8 @@ class MainWindow(QtWidgets.QMainWindow):
         #self.canva.axes2.stem(self.freq_domain,self.X_signal,use_line_collection=True)
         self.setCentralWidget(centralWidget)
         # upsampling and downsampling parameters
-
+        self.createFilter(43,15,30,1000,0.001,"FIR")
+        self.createFilter(43,15,30,1000,0.001,"IIR")
         self.setWindowTitle("Ahmet Cihat Bozkurt Comb Filter")
         self.showMaximized()
         self.show()
@@ -101,6 +102,20 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def change_IIRcomb(self):
         print("BOS")
+
+    def createFilter(self,numtaps,f0,f1,fs,dt,filter_type):
+        if filter_type == "FIR":
+            a = 1
+            b = signal.firwin(numtaps,[f0,f1],fs=fs,window='hamming')
+            print(b)
+
+        else:
+            b,a = signal.iirfilter(17, [50, 200], rs=60, btype='band',
+                       analog=False, ftype='cheby2', fs=2000,
+                       output='ba')
+            print(b)
+
+
 
     def create_slider(self):
         # This function creates a slider and returns it.
