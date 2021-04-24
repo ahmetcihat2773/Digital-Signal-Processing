@@ -31,6 +31,12 @@ class SignalPlotting(FigureCanvasQTAgg):
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
+        fs = 8000
+        fs2 = 8000/2
+        f1 = 500
+        f2 = 2500
+        numtaps = 43
+        dt = 1/fs
         # Create an instance of the SignalPlotting class
         self.canva = SignalPlotting(self, width=5, height=4, dpi=100)
         # create a flexible layout
@@ -75,21 +81,14 @@ class MainWindow(QtWidgets.QMainWindow):
         layout_vertical.addWidget(self.canva)
         layout_vertical.addWidget(widget)
 
-        # SHOW SIGNALS
-        self.fs_signal = 100
-        self.h_signal = 1
-        self.len_signal = 1
-        self.k_max_signal = 7
-        self.freq = 5
-        #self.signal,self.time = self.myFourierSeries()
         #self.canva.axes1.stem(self.time,self.signal,use_line_collection=True)
-        # take the fft of original signal
-        #self.X_signal,self.freq_domain = self.take_fft(self.signal)
         #self.canva.axes2.stem(self.freq_domain,self.X_signal,use_line_collection=True)
         self.setCentralWidget(centralWidget)
-        # upsampling and downsampling parameters
-        self.createFilter(43,15,30,1000,0.001,"FIR")
-        self.createFilter(43,15,30,1000,0.001,"IIR")
+
+
+        self.createFilter(numtaps,f1,f2,fs,dt,"FIR")
+        self.createFilter(numtaps,f1,f2,fs,dt,"IIR")
+
         self.setWindowTitle("Ahmet Cihat Bozkurt Comb Filter")
         self.showMaximized()
         self.show()
@@ -103,19 +102,29 @@ class MainWindow(QtWidgets.QMainWindow):
     def change_IIRcomb(self):
         print("BOS")
 
-    def createFilter(self,numtaps,f0,f1,fs,dt,filter_type):
+    def createFilter(self,numtaps,f1,f2,fs,dt,filter_type):
+        """
+        This function creates filters and returns a and b coefficients and frequency and amplitude.
+        """
+
+        # numtaps : length of a filter. Number of coefficients.(filter order + 1)
         if filter_type == "FIR":
+            # fir filter's a coefficient is 1.
             a = 1
-            b = signal.firwin(numtaps,[f0,f1],fs=fs,window='hamming')
-            print(b)
-
+            b = signal.firwin(numtaps,[f1,f2],fs=fs,window='hamming',pass_zero='bandpass')
+            freq, amp = signal.freqz(b,a,fs=fs)
+            # get b coefficient thanks to firwin function.
+            amp = 20*np.log10(abs(amp)) 
+            self.canva.axes1.plot(freq,amp)
+            return a,b
         else:
-            b,a = signal.iirfilter(17, [50, 200], rs=60, btype='band',
-                       analog=False, ftype='cheby2', fs=2000,
+            b,a = signal.iirfilter(numtaps, [f1,f2],btype='bandpass',
+                       analog=False, ftype='cheby1',rp=3,rs=20,fs=fs,
                        output='ba')
-            print(b)
-
-
+            freq, amp = signal.freqz(b,a,fs=fs)
+            amp = 20*np.log10(abs(amp)) 
+            self.canva.axes3.plot(freq,amp)
+            return a,b
 
     def create_slider(self):
         # This function creates a slider and returns it.
