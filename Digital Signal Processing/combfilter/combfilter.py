@@ -1,6 +1,3 @@
-
-
-import numpy as np
 def combfilter(b,a,factor):
     """
     Add coefficients and zeros into a new list for each a and b. 
