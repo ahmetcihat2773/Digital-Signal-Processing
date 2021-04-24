@@ -2,15 +2,26 @@
 
 import numpy as np
 def combfilter(b,a,factor):
-
-    coef_len = len(b)
-
-    new_len = coef_len + ( factor * ( coef_len - 1 ) )
-
-    combf_a = np.zeros(new_len)
-    combf_b = np.zeros(new_len)
-
-    combf_a[::factor+1] = a
-    combf_b[::factor+1] = b
-
-    return combf_b,combf_a
+    """
+    Add coefficients and zeros into a new list for each a and b. 
+    """
+    temp_a = list()
+    temp_b = list()
+    try:            
+        if len(a)>1:
+            # If a is an array which is the case for IIR filters.
+            for m in range(len(b)):
+                temp_b.append(b[m])
+                temp_a.append(a[m])
+                for i in range(factor):
+                    temp_b.append(0)
+                    temp_a.append(0)
+            return temp_b,temp_a 
+    except:
+        for m in range(len(b)):
+            # if a is an integer which is the case for FIR filter in this program.
+            temp_b.append(b[m])
+            for i in range(factor):
+                temp_b.append(0)
+        return temp_b,a
+    

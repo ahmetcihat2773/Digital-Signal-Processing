@@ -120,6 +120,9 @@ class MainWindow(QtWidgets.QMainWindow):
             freq, amp = signal.freqz(b,a,fs=self.fs)
             amp = 20*np.log10(abs(amp)) 
             self.canva.axes2.clear()
+            self.canva.axes2.set_title("FIR COMB FILTER")
+            self.canva.axes2.set_xlabel("Frequency(Hz)")
+            self.canva.axes2.set_ylabel("Amplitude(dB)")
             self.canva.axes2.plot(freq,amp)
             self.canva.draw()
 
@@ -134,6 +137,9 @@ class MainWindow(QtWidgets.QMainWindow):
             freq, amp = signal.freqz(b,a,fs=self.fs)
             amp = 20*np.log10(abs(amp)) 
             self.canva.axes4.clear()
+            self.canva.axes4.set_title("IIR COMB FILTER")
+            self.canva.axes4.set_xlabel("Frequency(Hz)")
+            self.canva.axes4.set_ylabel("Amplitude(dB)")
             self.canva.axes4.plot(freq,amp)
             self.canva.draw()
 
@@ -174,8 +180,8 @@ class MainWindow(QtWidgets.QMainWindow):
             self.canva.axes1.plot(freq,amp)
             return a,b
         else:
-            b,a = signal.iirfilter(numtaps, [f1,f2],btype='bandpass',
-                       analog=False, ftype='cheby1',rp=3,rs=20,fs=self.fs,
+            b,a = signal.iirfilter(numtaps, [f1,f2],btype='band',
+                       analog=False, ftype='butter',fs=self.fs,
                        output='ba')
             freq, amp = signal.freqz(b,a,fs=self.fs)
             amp = 20*np.log10(abs(amp)) 
