@@ -7,7 +7,7 @@
 
 In general thanks to the sliders which are given below figures, one can adjust the factor value by sliding the slider right or left. Affect of the factor can be observed on the Comb figures for IIR and FIR filters. On the other hand, you can enable and disable the sliders thanks to the given two checkboxes.
 
-![program](program.PNG)     
+![program](programX.PNG)     
 
 
 Intentionally I did not give ability to the user to change the filter itself, because the purpose of this program is only showing the result of comb filter design not visualizing the affact of sampling frequency or window type of filter. 
