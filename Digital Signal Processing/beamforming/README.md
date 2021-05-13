@@ -20,3 +20,22 @@ In another application of airfoil noise localization which is performed in the U
 In this application the wind is coming from left to right and the placement of the microphones or sensors are optimized to improve the array performance. That's why the placement of the arrays also affect the result of beamforming. 
 
 
+Delay and Sum technique is aldready explained before. The area where the noise source is likely to be is divided into grids. Each point of these grids is considered as a noise source and the power values ​​are obtained by applying the delay-and-sum technique for the signals coming from the points.
+
+
+![airfoil](beamforming.PNG)
+
+In the given image above, m represents the microphones, x represents the possible noise source in an area and all the signals are captured by the microphones. Output Map is given for only one location which can be calculated with the given formula below. [Fundamentals of aerospace etc] 
+
+
+<img align="center" src="http://www.sciweavers.org/upload/Tex2Img_1620886835/render.png">
+
+
+Here M is the total number of microphones, pm is the signal measured by each microphone, x1 is the one possible source position, x is the microphone position. 
+
+Here the t0 is important because, it represents the delay and intentionally added to the equaiton. For each node or possible source location, signal measured by the each microphone is delayed according to the behinded time with the given formula below.
+
+
+<img align="center" src="http://www.sciweavers.org/upload/Tex2Img_1620887945/render.png">
+
+
