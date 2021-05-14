@@ -42,8 +42,12 @@ The distance of an object in the coverage area of ​​the radar is calculated 
 
 ![radarSensor](radarSensor.PNG)
 
-I am gonna explain an application where two stationary objects are aimed to be detected by the radar. In order to detect them, radar has to calculate the position of the object by consedering the phase of incoming signals and the time delay during the propagation to calculate both of them. After getting the angle and distance the location of the objects can be obtained. 
-On the left side of figure below, two corner reflectors are placed with different distance and hight in front of the radar. Each corner reflectors have different cross sections. In the radar, frequency modulated continues waves are used and the image at the right side of the given image below is obtained after applying the beam forming in which one can see where the relative power is increasing which represents the object in x,y direction in meter.
+I am gonna explain an application where two stationary objects are aimed to be detected by the radar. In order to detect them, radar has to calculate the distance of the object by consedering time delay during the propagation and has to calculate the angle where the object is located by considering the frequency domain of the signal. To get this, FFT is used in the receiver part because the frequency modulation characteristic.
+
+![frequency modulation](fmcw.gif)
+
+After getting the angle and distance the location of the objects can be obtained. 
+On the left side of figure below, two corner reflectors are placed with different distance and hight in front of the radar. Each corner reflectors have different cross sections. In the radar, frequency modulated continues waves are used and the image at the right side of the given image below is obtained after applying the beam forming in which one can see where the relative power is increasing which represents the object in x,y direction in meter. Radar is located at 0,0 and right side is positive in x coordiante and left side of the radar is negative.
 
 ![ImagingResults](ImagingResults.PNG)
 
