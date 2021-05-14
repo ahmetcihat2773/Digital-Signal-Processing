@@ -7,24 +7,24 @@ Thanks to all development in technology, we are able to build robust microphone 
 Nowadays, environmental issue is one of the most dominant problems in the air transportation system. Airplanes should make as little noise as possible during landing and taking off. Understanding which part causes noise in airplanes requires long-term research and technical infrastructure on its own. Although there are many methods, the beam forming method will be explained.
 
 In the photo below, a scaled aircraft is used to investigate the noise which is caused on the wings by the wind turbine air. In order to find the exact location of the noise, microphone arrays are placed on the ground and the calculated noise powers can be seen in the right of the below image.   
-![airfoil](airfoil.PNG)
 
+<img align="center" src="airfoil.PNG" width="600" height="600">
 In another application of airfoil noise localization which is performed in the University of Twente Aeroacoustic Wind Tunnel, the set-up with 112 digital MEMS microphones and FPGA is used for noise source measurement which is given in the image below.
 
-![airfoil](mic.PNG)
+
+<img align="center" src="mic.PNG" width="600" height="600">
 
 In this application, the wind is coming from left to right and the placement of the microphones or sensors is optimized to improve the array performance. That's why the placement of the arrays also affects the result of beam forming. 
 
 
 Delay and Sum technique is already explained before. The area where the noise source is likely to be is divided into grids. Each point of these grids is considered as a noise source and the source pressure levels ​​are obtained by applying the delay-and-sum technique to the signals coming from the points. These values can be presented on a counter map[3].
 
-
-![airfoil](beamforming.PNG)
+<img align="center" src="beamforming.PNG" width="600" height="600">
 
 In the given image above, m represents the microphones, x represents the possible noise source in an area and all the signals are captured by the microphones. Output Map is given for only one location which can be calculated with the given formula below. [1] 
 
 
-<img align="center" src="http://www.sciweavers.org/upload/Tex2Img_1620886835/render.png">
+<img align="center" src="http://www.sciweavers.org/upload/Tex2Img_1620886835/render.png" width="600" height="600">
 
 
 Here M is the total number of microphones, pm is the signal measured by each microphone, x1 is the one possible source position, x is the microphone position. 
@@ -32,7 +32,7 @@ Here M is the total number of microphones, pm is the signal measured by each mic
 Here the t0 is important because it represents the delay and intentionally added to the equation. For each node or possible source location, the signal measured by each microphone is delayed according to the behinded time with the given formula below.
 
 
-<img align="center" src="http://www.sciweavers.org/upload/Tex2Img_1620887945/render.png">
+<img align="center" src="http://www.sciweavers.org/upload/Tex2Img_1620887945/render.png" width="600" height="600">
 
 
 # Beamforming in Radar
@@ -40,17 +40,16 @@ Radars are electromagnetic sensors which are used for range,angle or velocity de
 In principle, radars send signals from transmitters and the signals they send come back by hitting an object. The returning signals are picked up by the receivers.
 The distance of an object in the coverage area of ​​the radar is calculated by the time it takes the signal to leave and return to the radar. There are a lot of different application of radar in industry and acedemiy[https://en.wikipedia.org/wiki/Radar_configurations_and_types] however I am gonna explain the **digital beamforming radars**. Beside getting velocity, digital beamforming radars provides distance and angular information of possible target objects. In general, good angular resolution which means large filed of view is required for many applications. In order to achive this high resolution, number of receiver and transmitter should be increased. For example eight transmitter and eight receiver on a radar can be one option and multiple tranceiver and transmitter configuration can be seen in the image below.[C2010 Harter Amodular].
 
-![radarSensor](radarSensor.PNG)
-
+<img align="center" src="radarSensor.PNG" width="600" height="600">
 I am gonna explain an application where two stationary objects are aimed to be detected by the radar. In order to detect them, radar has to calculate the distance of the object by consedering time delay during the propagation and has to calculate the angle where the object is located by considering the frequency domain of the signal. To get this, FFT is used in the receiver part because the frequency modulation characteristic.
 
-![frequency modulation](fmcw.gif)
+
+<img align="center" src="fmcw.gif" width="600" height="600">
 
 After getting the angle and distance the location of the objects can be obtained. 
 On the left side of figure below, two corner reflectors are placed with different distance and hight in front of the radar. Each corner reflectors have different cross sections. In the radar, frequency modulated continues waves are used and the image at the right side of the given image below is obtained after applying the beam forming in which one can see where the relative power is increasing which represents the object in x,y direction in meter. Radar is located at 0,0 and right side is positive in x coordiante and left side of the radar is negative.
 
-![ImagingResults](ImagingResults.PNG)
-
+<img align="center" src="ImagingResults.PNG" width="600" height="600">
 
 # References : 
 
