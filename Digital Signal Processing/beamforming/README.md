@@ -36,23 +36,25 @@ Here the t0 is important because it represents the delay and intentionally added
 
 
 # Beamforming in Radar
-Radars are electromagnetic sensors which are used for range,angle or velocity determination of objects. They can be used for detecting motor vehicles, spacecraft,cars etc. There might be one or more than one transmitter and receiver antennas in radar to detect the mentioned properties of any object. In principle ra
-In principle, radars send signals from transmitters and the signals they send come back by hitting an object. The returning signals are picked up by the receivers.
-The distance of an object in the coverage area of ​​the radar is calculated by the time it takes the signal to leave and return to the radar. There are a lot of different application of radar in industry and acedemiy[https://en.wikipedia.org/wiki/Radar_configurations_and_types] however I am gonna explain the **digital beamforming radars**. Beside getting velocity, digital beamforming radars provides distance and angular information of possible target objects. In general, good angular resolution which means large filed of view is required for many applications. In order to achive this high resolution, number of receiver and transmitter should be increased. For example eight transmitter and eight receiver on a radar can be one option and multiple tranceiver and transmitter configuration can be seen in the image below.[C2010 Harter Amodular].
+Radars are electromagnetic sensors that are used for the range, angle, or velocity determination of objects. They can be used for detecting motor vehicles, spacecraft, cars, etc. There might be one or more than one transmitter and receiver antennas in radar to detect the mentioned properties of any object. In principle, radars send signals from transmitters and the signals they send come back by hitting an object. The returning signals are picked up by the receivers.
+The distance of an object in the coverage area of ​​the radar is calculated by the time it takes the signal to leave and return to the radar. There is a lot of different application of radar in industry and academy[4] however I am going to explain the **digital beam forming radars**. Besides getting velocity, digital beam-forming radars provide distance and angular information of possible target objects. In general, a good angular resolution which means a large field of view is required for many applications[5]. In order to achieve this high resolution, the number of receivers and transmitters should be increased. For example, eight transmitters and eight receivers on radar can be one option and multiple transceiver and transmitter configuration can be seen in the image below.[5]
 
 <img align="center" src="radarSensor.PNG"  >
-I am gonna explain an application where two stationary objects are aimed to be detected by the radar. In order to detect them, radar has to calculate the distance of the object by consedering time delay during the propagation and has to calculate the angle where the object is located by considering the frequency domain of the signal. To get this, FFT is used in the receiver part because the frequency modulation characteristic.
-
+In one of the applicaiton, two stationary objects are aimed to be detected by the radar. In order to detect them, radar has to calculate the distance of the object by considering the time delay during the propagation and has to calculate the angle where the object is located by considering the frequency domain of the signal. To do this, FFT is used in the receiver part because of the frequency modulation characteristic [5]. Frequency modulated signals have high frequency where the source signal has high amplitude and low frequency where the source signal has low amplitude. 
 
 <img align="center" src="fmcw.gif"  >
 
 After getting the angle and distance the location of the objects can be obtained. 
-On the left side of figure below, two corner reflectors are placed with different distance and hight in front of the radar. Each corner reflectors have different cross sections. In the radar, frequency modulated continues waves are used and the image at the right side of the given image below is obtained after applying the beam forming in which one can see where the relative power is increasing which represents the object in x,y direction in meter. Radar is located at 0,0 and right side is positive in x coordiante and left side of the radar is negative.
+On the left side of figure below, two corner reflectors are placed with different distance and hight in front of the radar. Each corner reflectors have different cross sections. In the radar, frequency modulated continues waves are used and the image at the right side of the given image below is obtained after applying the beam forming in which one can see where the relative power is increasing which represents the object in x,y. Radar is located at 0,0 and right side is positive in x coordiante and left side of the radar is negative.
 
 <img align="center" src="ImagingResults.PNG"  >
+
+# Beamforming In Sonar Applications
 
 # References : 
 
 1. Department Thermal Fluid Engineering University of Twente (n.d.) Fundamentals of Acoustic Beamforming, P.O. Box 217 Enschede, 7500 AE The Netherlands: Leandro de Santana.
 2. National Instruments (n.d.) Using Acoustic Beamforming for Pass-By Noise Source Detection, P.O. Box 217 Enschede, 7500 AE The Netherlands: Doug Farrell,Product Manager.
 3. (2003) Noise Source Location Techniques – Simple to Advanced Applications, P.O. Box 217 Enschede, 7500 AE The Netherlands: Mehdi Batel and Marc Marroquin, Brüel & Kjær North America, Inc., Norcross, Georgia Jørgen Hald, Jacob J. Christensen, Andreas P. Schuhmacher and Torben G. Nielsen, Brüel & Kjær, Denmark.
+4. (20 January 2021) Radar configurations and Types, Available at: https://en.wikipedia.org/wiki/Radar_configurations_and_types
+5. Marlene Harter, Andreas Kornbichler, Thomas Zwick (2010) A Modular 24 GHz Radar Sensor for Digital Beamforming on Transmit and Receive
