@@ -35,6 +35,11 @@ Here the t0 is important because it represents the delay and intentionally added
 <img align="center" src="http://www.sciweavers.org/upload/Tex2Img_1620887945/render.png">
 
 
+# Beamforming in Radar
+Radars are electromagnetic sensors which are used for range,angle or velocity determination of objects. They can be used for detecting motor vehicles, spacecraft,cars etc. There might be one or more than one transmitter and receiver antennas in radar to detect the mentioned properties of any object. In principle ra
+In principle, radars send signals from transmitters and the signals they send come back by hitting an object. The returning signals are picked up by the receivers.
+The distance of an object in the coverage area of ​​the radar is calculated by the time it takes the signal to leave and return to the radar. There are a lot of different application of radar in industry and acedemiy[https://en.wikipedia.org/wiki/Radar_configurations_and_types] however I am gonna explain the **digital beamforming radars**. Beside getting range and velocity, digital beamforming radars provides angular information of possible target objects. In general, good angular resolution which means large filed of view is required for many applications. In order to achive this high resolution, number of receiver and transmitter should be increased. For example eight transmitter and eight receiver on a radar can be one option[C2010 Harter Amodular].
+
 
 # References : 
 
