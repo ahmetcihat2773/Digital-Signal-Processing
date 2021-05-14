@@ -38,7 +38,14 @@ Here the t0 is important because it represents the delay and intentionally added
 # Beamforming in Radar
 Radars are electromagnetic sensors which are used for range,angle or velocity determination of objects. They can be used for detecting motor vehicles, spacecraft,cars etc. There might be one or more than one transmitter and receiver antennas in radar to detect the mentioned properties of any object. In principle ra
 In principle, radars send signals from transmitters and the signals they send come back by hitting an object. The returning signals are picked up by the receivers.
-The distance of an object in the coverage area of ​​the radar is calculated by the time it takes the signal to leave and return to the radar. There are a lot of different application of radar in industry and acedemiy[https://en.wikipedia.org/wiki/Radar_configurations_and_types] however I am gonna explain the **digital beamforming radars**. Beside getting range and velocity, digital beamforming radars provides angular information of possible target objects. In general, good angular resolution which means large filed of view is required for many applications. In order to achive this high resolution, number of receiver and transmitter should be increased. For example eight transmitter and eight receiver on a radar can be one option[C2010 Harter Amodular].
+The distance of an object in the coverage area of ​​the radar is calculated by the time it takes the signal to leave and return to the radar. There are a lot of different application of radar in industry and acedemiy[https://en.wikipedia.org/wiki/Radar_configurations_and_types] however I am gonna explain the **digital beamforming radars**. Beside getting velocity, digital beamforming radars provides distance and angular information of possible target objects. In general, good angular resolution which means large filed of view is required for many applications. In order to achive this high resolution, number of receiver and transmitter should be increased. For example eight transmitter and eight receiver on a radar can be one option and multiple tranceiver and transmitter configuration can be seen in the image below.[C2010 Harter Amodular].
+
+![radarSensor](radarSensor.PNG)
+
+I am gonna explain an application where two stationary objects are aimed to be detected by the radar. In order to detect them, radar has to calculate the position of the object by consedering the phase of incoming signals and the time delay during the propagation to calculate both of them. After getting the angle and distance the location of the objects can be obtained. 
+On the left side of figure below, two corner reflectors are placed with different distance and hight in front of the radar. Each corner reflectors have different cross sections. In the radar, frequency modulated continues waves are used and the image at the right side of the given image below is obtained after applying the beam forming in which one can see where the relative power is increasing which represents the object in x,y direction in meter.
+
+![ImagingResults](ImagingResults.PNG)
 
 
 # References : 
