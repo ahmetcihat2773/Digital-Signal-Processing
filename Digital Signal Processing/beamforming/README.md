@@ -44,12 +44,28 @@ In one of the applicaiton, two stationary objects are aimed to be detected by th
 
 <img align="center" src="fmcw.gif"  >
 
+<sub>Image Source: </sub>
+
 After getting the angle and distance the location of the objects can be obtained. 
 On the left side of figure below, two corner reflectors are placed with different distance and hight in front of the radar. Each corner reflectors have different cross sections. In the radar, frequency modulated continues waves are used and the image at the right side of the given image below is obtained after applying the beam forming in which one can see where the relative power is increasing which represents the object in x,y. Radar is located at 0,0 and right side is positive in x coordiante and left side of the radar is negative.
 
 <img align="center" src="ImagingResults.PNG"  >
 
 # Beamforming In Sonar Applications
+Sonar means Sound Navigation and Ranging which is usefull for exploring and mapping the oceans by using sound waves. Since the sound speed is constant, it can be used for calculating the distance from Sonar itself. The distace of an object is calculated by measuring the time that takes the sound waves to return after having transmitted from transmitter. Therefore reclected sound signals are used. When the transmitter emitting time and the time that receiver have the reflected sound signal is known, the distance can be calculated easly.
+
+<img align="center" src="sonarReflector.PNG"  >
+<sub>Image Source: sonar_presentation </sub>
+
+Beamforming is used for detecting fish population density under the water. 
+
+<img align="center" src="fish.PNG"  >
+<sub>Image Source: sonar_presentation </sub>
+
+Sonar is used for 2D or 3D mapping of the seafloor by estimating range in different level with beam forming methods.
+
+<img align="center" src="seafloor.PNG"  >
+<sub>Image Source: sonar_presentation </sub>
 
 # References : 
 
