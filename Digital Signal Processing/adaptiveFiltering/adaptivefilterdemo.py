@@ -19,12 +19,10 @@ from scipy import signal
 from myadaptivefilt import my_lms_filter,my_fast_conv
 import padasip as pa
 
-
 class SignalPlotting(FigureCanvasQTAgg):
     def __init__(self, parent=None, width=5, height=4, dpi=100):
         # Create subplots to show the signals
         self.fig = Figure(figsize=(width, height), dpi=dpi,tight_layout=True)
-        
         self.axes1 = self.fig.add_subplot(2,2,1)
         self.axes1.set_title("Signals at MIC1 and MIC2")
         self.axes1.set_xlabel("Time(s)")
@@ -63,8 +61,6 @@ class MainWindow(QtWidgets.QMainWindow):
         hor_check2 = QtWidgets.QHBoxLayout()
         widget_check2 = QtWidgets.QWidget()
         widget_check2.setLayout(hor_check2)
-
-
 
         bottom_layout = QtWidgets.QHBoxLayout()
         # check box to active the comb filter
@@ -117,9 +113,6 @@ class MainWindow(QtWidgets.QMainWindow):
         widget.setMaximumHeight(150)
         layout_vertical.addWidget(self.canva)
         layout_vertical.addWidget(widget)
-
-        #self.canva.axes1.stem(self.time,self.signal,use_line_collection=True)
-        #self.canva.axes2.stem(self.freq_domain,self.X_signal,use_line_collection=True)
         self.fs = 1000
         self.mu = 0.01
         self.update_after_fs()
@@ -139,7 +132,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def update_IIR_factor(self):
         # Update sampling frequency
         factor = 1000*self.slider_2.value() 
-        label = "  FS :  " +str(factor)
+        label = "  Fs(Hz) :  " +str(factor)
         self.IIR_label.setText(label)
         self.fs = factor
         self.update_after_fs()
@@ -173,7 +166,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # Generate low pass filter
         b, a = signal.butter(3, 0.05)
         # Apply low pass filter to random signal
-        self.source_signal = 10*signal.filtfilt(b, a, np.random.randn(len(t)))
+        self.source_signal = 2.5*signal.filtfilt(b, a, np.random.randn(len(t)))
         # Create bigger zeros signal to have a delay feeling.
         self.channel_noise = np.random.randn(len(self.source_signal)+self.delay_sample)
         # Create noise. Noise should have low power.
@@ -195,6 +188,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.canva.axes1.clear()
         self.canva.axes1.plot(self.t_channel,self.channel_noise_mic2,'b',label="Signal at MIC2")
         self.canva.axes1.plot(self.t_channel,self.channel_noise_mic1,'r',label="Signal at MIC1")
+        self.canva.axes1.grid(True)
         self.canva.axes1.legend()
         self.canva.axes1.set_title("Signals at MIC1 and MIC2")
         self.canva.axes1.set_xlabel("Time(s)")
@@ -217,6 +211,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.canva.axes2.clear()
         self.canva.axes2.plot(self.t_channel,self.channel_noise_mic2,'b',label="Signal at MIC2")
         self.canva.axes2.plot(self.t_channel,self.channel_noise_mic1,'r',label="Signal at MIC1")
+        self.canva.axes2.grid(True)
         self.canva.axes2.legend()
         self.canva.axes2.set_title("Signals at MIC1 and MIC2 After Removing Delay")
         self.canva.axes2.set_xlabel("Time(s)")
@@ -232,8 +227,9 @@ class MainWindow(QtWidgets.QMainWindow):
         #self.y, self.e, w = f.run(self.channel_noise_mic2_temp,self.input_matrix)
         self.t_channel = np.linspace(0, 1+self.delay_second, len(self.channel_noise_mic2_temp))
         self.canva.axes3.clear()
-        self.canva.axes3.plot(self.t_channel,self.channel_noise_mic2_temp,'b',label="Before Adaptive Filter")
-        self.canva.axes3.plot(self.t_channel,self.y,'r',label="After Adaptive Filter")
+        self.canva.axes3.plot(self.t_channel,self.channel_noise_mic2_temp,'b',label="Signal at MIC2 Before Adaptive Filter")
+        self.canva.axes3.plot(self.t_channel,self.y,'r',label="Signal at MIC2 After Adaptive Filter")
+        self.canva.axes3.grid(True)
         self.canva.axes3.legend()
         self.canva.axes3.set_title("Signal at MIC2 Before and After Adaptive Filter")
         self.canva.axes3.set_xlabel("Time(s)")
@@ -245,6 +241,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.canva.axes4.set_xlabel("Sample")
         self.canva.axes4.set_ylabel("dB")
         self.canva.axes4.legend()
+        self.canva.axes4.grid(True)
         self.canva.axes4.set_title("Error")
         self.canva.draw()
         
