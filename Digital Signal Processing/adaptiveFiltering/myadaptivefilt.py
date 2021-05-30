@@ -17,7 +17,7 @@ def my_lms_filter(d,x,mu,b):
 def my_fast_conv(x, h):
   # Converting into frequency domain and multiplying and returning time domain 1000 times faster.
   # transform the x and h into frequency domain and multiply them and then come back to time domain
-    # YOUR CODE HERE
+    
     fftsize_x = len(x)
     fftsize_h = len(h)
     fftsize = fftsize_x + fftsize_h -1 
